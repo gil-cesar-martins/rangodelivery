@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "876654773299",
+    "project_id": "rangodelivery-85dfc",
+    "storage_bucket": "rangodelivery-85dfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876654773299:android:6ba56d0662d8551bc1cf46",
+        "android_client_info": {
+          "package_name": "com.mycompany.rangodelivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsABelfSRNmW0q2o2RaBua417qmzhDJPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
