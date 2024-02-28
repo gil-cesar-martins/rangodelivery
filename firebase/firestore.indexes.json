@@ -1,18 +1,3 @@
 {
-  "indexes": [
-    {
-      "collectionGroup": "pedido",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "data",
-          "order": "DESCENDING"
-        }
-      ]
-    }
-  ]
+  "indexes": []
 }

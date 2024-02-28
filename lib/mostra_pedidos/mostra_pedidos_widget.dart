@@ -85,12 +85,10 @@ class _MostraPedidosWidgetState extends State<MostraPedidosWidget> {
           padding: const EdgeInsetsDirectional.fromSTEB(25.0, 20.0, 25.0, 50.0),
           child: StreamBuilder<List<PedidoRecord>>(
             stream: queryPedidoRecord(
-              queryBuilder: (pedidoRecord) => pedidoRecord
-                  .where(
-                    'status',
-                    isEqualTo: 2,
-                  )
-                  .orderBy('data', descending: true),
+              queryBuilder: (pedidoRecord) => pedidoRecord.where(
+                'status',
+                isEqualTo: 2,
+              ),
               limit: 50,
             ),
             builder: (context, snapshot) {

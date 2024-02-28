@@ -160,103 +160,84 @@ class _MesasWidgetState extends State<MesasWidget> {
                                     size: 36.0,
                                   ),
                                   onPressed: () async {
-                                    if (gridViewMesaRecord.status) {
-                                      var confirmDialogResponse =
-                                          await showDialog<bool>(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: const Text('ABRIR PEDIDO'),
-                                                    content: Text(
-                                                        'Deseja abrir um pedido para a mesa ${gridViewMesaRecord.numero.toString()} ?'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext,
-                                                                false),
-                                                        child: const Text('Não'),
-                                                      ),
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext,
-                                                                true),
-                                                        child: const Text('Sim'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              ) ??
-                                              false;
-                                      if (confirmDialogResponse) {
-                                        await PedidoRecord.collection
-                                            .doc()
-                                            .set(createPedidoRecordData(
-                                              tipo: 'mesa',
-                                              idAtendente: currentUserUid,
-                                              data: getCurrentTimestamp,
-                                              status: 2,
-                                              numero: gridViewMesaRecord.numero,
-                                            ));
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: const Text('ABRIR PEDIDO'),
+                                                  content: Text(
+                                                      'Deseja abrir um pedido para a mesa ${gridViewMesaRecord.numero.toString()} ?'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: const Text('Não'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: const Text('Sim'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    if (confirmDialogResponse) {
+                                      await PedidoRecord.collection
+                                          .doc()
+                                          .set(createPedidoRecordData(
+                                            tipo: 'mesa',
+                                            idAtendente: currentUserUid,
+                                            data: getCurrentTimestamp,
+                                            status: 2,
+                                            numero: gridViewMesaRecord.numero,
+                                          ));
 
-                                        await gridViewMesaRecord.reference
-                                            .update(createMesaRecordData(
-                                          status: false,
-                                          idAtendente: currentUserUid,
-                                        ));
-                                      } else {
-                                        return;
-                                      }
-
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Pedido criado com sucesso',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                            ),
-                                          ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
-
-                                      context.pushNamed(
-                                        'mostraPedidos',
-                                        queryParameters: {
-                                          'paramMesaCompleta': serializeParam(
-                                            gridViewMesaRecord.reference,
-                                            ParamType.DocumentReference,
-                                          ),
-                                        }.withoutNulls,
-                                      );
-
-                                      setState(() {
-                                        FFAppState().pedMesaCompleta =
-                                            gridViewMesaRecord.reference;
-                                      });
+                                      await gridViewMesaRecord.reference
+                                          .update(createMesaRecordData(
+                                        status: false,
+                                        idAtendente: currentUserUid,
+                                      ));
                                     } else {
-                                      context.pushNamed(
-                                        'detPedido',
-                                        queryParameters: {
-                                          'paramMesaCompleta': serializeParam(
-                                            gridViewMesaRecord.reference,
-                                            ParamType.DocumentReference,
-                                          ),
-                                          'paramMesaNum': serializeParam(
-                                            gridViewMesaRecord.numero,
-                                            ParamType.int,
-                                          ),
-                                        }.withoutNulls,
-                                      );
+                                      return;
                                     }
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Pedido criado com sucesso',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
+                                      ),
+                                    );
+
+                                    context.pushNamed(
+                                      'mostraPedidos',
+                                      queryParameters: {
+                                        'paramMesaCompleta': serializeParam(
+                                          gridViewMesaRecord.reference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+
+                                    setState(() {
+                                      FFAppState().pedMesaCompleta =
+                                          gridViewMesaRecord.reference;
+                                    });
                                   },
                                 ),
                               ),

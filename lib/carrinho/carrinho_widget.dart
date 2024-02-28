@@ -301,17 +301,10 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                           await widget.paramPedRefCompleta!
                               .update(createPedidoRecordData(
                             total: FFAppState().total,
-                            status: 3,
                           ));
                           setState(() {
                             FFAppState().total = 0.0;
                           });
-
-                          await widget.paramMesaFinal!
-                              .update(createMesaRecordData(
-                            idAtendente: '',
-                            status: true,
-                          ));
                         },
                         text: 'FINALIZAR',
                         options: FFButtonOptions(
