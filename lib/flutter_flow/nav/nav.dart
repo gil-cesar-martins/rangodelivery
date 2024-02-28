@@ -130,6 +130,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             paramMesaFinal: params.getParam(
                 'paramMesaFinal', ParamType.DocumentReference, false, ['mesa']),
           ),
+        ),
+        FFRoute(
+          name: 'detPedido',
+          path: '/detPedido',
+          builder: (context, params) => DetPedidoWidget(
+            paramMesaCompleta: params.getParam('paramMesaCompleta',
+                ParamType.DocumentReference, false, ['mesa']),
+            paramMesaNumero: params.getParam('paramMesaNumero', ParamType.int),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

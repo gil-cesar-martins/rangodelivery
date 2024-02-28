@@ -301,6 +301,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                           await widget.paramPedRefCompleta!
                               .update(createPedidoRecordData(
                             total: FFAppState().total,
+                            status: 3,
                           ));
                           setState(() {
                             FFAppState().total = 0.0;

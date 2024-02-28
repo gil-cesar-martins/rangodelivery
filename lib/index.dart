@@ -6,3 +6,4 @@ export '/cad_mesas/cad_mesas_widget.dart' show CadMesasWidget;
 export '/produtos/produtos_widget.dart' show ProdutosWidget;
 export '/mostra_pedidos/mostra_pedidos_widget.dart' show MostraPedidosWidget;
 export '/carrinho/carrinho_widget.dart' show CarrinhoWidget;
+export '/det_pedido/det_pedido_widget.dart' show DetPedidoWidget;
