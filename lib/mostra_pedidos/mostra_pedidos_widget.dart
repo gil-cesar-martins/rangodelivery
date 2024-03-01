@@ -106,113 +106,117 @@ class _MostraPedidosWidgetState extends State<MostraPedidosWidget> {
                 );
               }
               List<PedidoRecord> columnPedidoRecordList = snapshot.data!;
-              return Column(
-                mainAxisSize: MainAxisSize.max,
-                children:
-                    List.generate(columnPedidoRecordList.length, (columnIndex) {
-                  final columnPedidoRecord =
-                      columnPedidoRecordList[columnIndex];
-                  return Card(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    elevation: 4.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 0.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    dateTimeFormat(
-                                        'd/M H:mm', columnPedidoRecord.data!),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  Text(
-                                    columnPedidoRecord.tipo,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 5.0, 0.0),
-                              child: Text(
-                                formatNumber(
-                                  columnPedidoRecord.total,
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.commaDecimal,
-                                  currency: 'R\$ ',
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: List.generate(columnPedidoRecordList.length,
+                      (columnIndex) {
+                    final columnPedidoRecord =
+                        columnPedidoRecordList[columnIndex];
+                    return Card(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 4.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 0.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      dateTimeFormat(
+                                          'd/M H:mm', columnPedidoRecord.data!),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ),
+                                    Text(
+                                      columnPedidoRecord.tipo,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ),
+                                  ],
                                 ),
-                                textAlign: TextAlign.end,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
                               ),
                             ),
-                          ),
-                          if (columnPedidoRecord.status > 1)
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 5.0, 0.0),
+                                child: Text(
+                                  formatNumber(
+                                    columnPedidoRecord.total,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.commaDecimal,
+                                    currency: 'R\$ ',
+                                  ),
+                                  textAlign: TextAlign.end,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                              ),
+                            ),
+                            if (columnPedidoRecord.status > 1)
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                icon: FaIcon(
+                                  FontAwesomeIcons.cartPlus,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'produtos',
+                                    queryParameters: {
+                                      'paramIDPedido': serializeParam(
+                                        columnPedidoRecord.reference.id,
+                                        ParamType.String,
+                                      ),
+                                      'paramPedRefCompleta': serializeParam(
+                                        columnPedidoRecord.reference,
+                                        ParamType.DocumentReference,
+                                      ),
+                                      'paramMesa2': serializeParam(
+                                        widget.paramMesaCompleta,
+                                        ParamType.DocumentReference,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                              ),
                             FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
                               borderRadius: 20.0,
                               borderWidth: 1.0,
                               buttonSize: 40.0,
-                              icon: FaIcon(
-                                FontAwesomeIcons.cartPlus,
+                              icon: Icon(
+                                Icons.arrow_forward_ios,
                                 color: FlutterFlowTheme.of(context).primary,
                                 size: 24.0,
                               ),
-                              onPressed: () async {
-                                context.pushNamed(
-                                  'produtos',
-                                  queryParameters: {
-                                    'paramIDPedido': serializeParam(
-                                      columnPedidoRecord.reference.id,
-                                      ParamType.String,
-                                    ),
-                                    'paramPedRefCompleta': serializeParam(
-                                      columnPedidoRecord.reference,
-                                      ParamType.DocumentReference,
-                                    ),
-                                    'paramMesa2': serializeParam(
-                                      widget.paramMesaCompleta,
-                                      ParamType.DocumentReference,
-                                    ),
-                                  }.withoutNulls,
-                                );
+                              onPressed: () {
+                                print('IconButton pressed ...');
                               },
                             ),
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 24.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  }).addToEnd(const SizedBox(height: 50.0)),
+                ),
               );
             },
           ),

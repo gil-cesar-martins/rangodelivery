@@ -63,7 +63,7 @@ class _EscolherPedidoWidgetState extends State<EscolherPedidoWidget> {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                 child: Text(
-                  'TIPO DE PEDIDO',
+                  'CONFERIR PEDIDOS',
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primary,
@@ -76,7 +76,7 @@ class _EscolherPedidoWidgetState extends State<EscolherPedidoWidget> {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 8.0),
                 child: Text(
-                  'Escolha uma ação abaixo',
+                  'Veja se todos já foram atendidos',
                   style: FlutterFlowTheme.of(context).labelMedium,
                 ),
               ),
@@ -105,6 +105,7 @@ class _EscolherPedidoWidgetState extends State<EscolherPedidoWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -140,96 +141,6 @@ class _EscolherPedidoWidgetState extends State<EscolherPedidoWidget> {
                       ),
                     ],
                   ),
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 60.0,
-              decoration: const BoxDecoration(),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      elevation: 0.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: FaIcon(
-                          FontAwesomeIcons.carSide,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 20.0,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Cliente no carro',
-                              style: FlutterFlowTheme.of(context).bodyLarge,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 60.0,
-              decoration: const BoxDecoration(),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      elevation: 0.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.directions_walk,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 22.0,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Pedido no balcão',
-                              style: FlutterFlowTheme.of(context).bodyLarge,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ),

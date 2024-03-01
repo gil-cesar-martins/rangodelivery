@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/get_quantidade_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -257,38 +258,43 @@ class _ProdutosWidgetState extends State<ProdutosWidget> {
                               });
                             },
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              FlutterFlowIconButton(
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                icon: FaIcon(
-                                  FontAwesomeIcons.solidEdit,
-                                  color: FlutterFlowTheme.of(context).success,
-                                  size: 24.0,
-                                ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
+                          if (valueOrDefault(currentUserDocument?.perfil, 0) ==
+                              1)
+                            AuthUserStreamWidget(
+                              builder: (context) => Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.solidEdit,
+                                      color:
+                                          FlutterFlowTheme.of(context).success,
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
+                                  FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.trash,
+                                      color: FlutterFlowTheme.of(context).error,
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
+                                ],
                               ),
-                              FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                icon: FaIcon(
-                                  FontAwesomeIcons.trash,
-                                  color: FlutterFlowTheme.of(context).error,
-                                  size: 24.0,
-                                ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
-                              ),
-                            ],
-                          ),
+                            ),
                         ],
                       ),
                     ),

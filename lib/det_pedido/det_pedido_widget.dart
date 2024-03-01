@@ -341,7 +341,18 @@ class _DetPedidoWidgetState extends State<DetPedidoWidget> {
                                             idAtendente: '',
                                           ));
 
-                                          context.pushNamed('mesas');
+                                          context.pushNamed(
+                                            'homePage',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType
+                                                        .rightToLeft,
+                                              ),
+                                            },
+                                          );
                                         } else {
                                           return;
                                         }

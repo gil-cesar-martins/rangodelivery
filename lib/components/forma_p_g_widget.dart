@@ -94,7 +94,7 @@ class _FormaPGWidgetState extends State<FormaPGWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       setState(() {
-                        FFAppState().formaPG = 'DI';
+                        FFAppState().formaPG = 'Dinheiro';
                       });
                       Navigator.pop(context);
                     },
@@ -157,8 +157,9 @@ class _FormaPGWidgetState extends State<FormaPGWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       setState(() {
-                        FFAppState().formaPG = 'CC';
+                        FFAppState().formaPG = 'C.Credito';
                       });
+                      Navigator.pop(context);
                     },
                     child: Material(
                       color: Colors.transparent,
@@ -219,8 +220,9 @@ class _FormaPGWidgetState extends State<FormaPGWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       setState(() {
-                        FFAppState().formaPG = 'CD';
+                        FFAppState().formaPG = 'C.Debito';
                       });
+                      Navigator.pop(context);
                     },
                     child: Material(
                       color: Colors.transparent,
@@ -290,8 +292,9 @@ class _FormaPGWidgetState extends State<FormaPGWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       setState(() {
-                        FFAppState().formaPG = 'VC';
+                        FFAppState().formaPG = 'Voucher';
                       });
+                      Navigator.pop(context);
                     },
                     child: Material(
                       color: Colors.transparent,
@@ -352,8 +355,9 @@ class _FormaPGWidgetState extends State<FormaPGWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       setState(() {
-                        FFAppState().formaPG = 'CRIPTO';
+                        FFAppState().formaPG = 'Cripto';
                       });
+                      Navigator.pop(context);
                     },
                     child: Material(
                       color: Colors.transparent,
@@ -414,8 +418,9 @@ class _FormaPGWidgetState extends State<FormaPGWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       setState(() {
-                        FFAppState().formaPG = 'PIX';
+                        FFAppState().formaPG = 'Pix';
                       });
+                      Navigator.pop(context);
                     },
                     child: Material(
                       color: Colors.transparent,

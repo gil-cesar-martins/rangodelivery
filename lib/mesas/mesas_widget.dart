@@ -61,7 +61,15 @@ class _MesasWidgetState extends State<MesasWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed(
+                'homePage',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.rightToLeft,
+                  ),
+                },
+              );
             },
           ),
           title: Text(
