@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -82,14 +83,14 @@ class _CadMesasWidgetState extends State<CadMesasWidget> {
           elevation: 2.0,
         ),
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(25.0, 20.0, 25.0, 50.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 50.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
                   width: double.infinity,
-                  height: 172.0,
+                  height: 191.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     boxShadow: const [
@@ -107,78 +108,83 @@ class _CadMesasWidgetState extends State<CadMesasWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 10.0),
-                          child: TextFormField(
-                            controller: _model.textFieldNumMesaController,
-                            focusNode: _model.textFieldNumMesaFocusNode,
-                            onChanged: (_) => EasyDebounce.debounce(
-                              '_model.textFieldNumMesaController',
-                              const Duration(milliseconds: 2000),
-                              () => setState(() {}),
+                        Form(
+                          key: _model.formKey,
+                          autovalidateMode: AutovalidateMode.disabled,
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: TextFormField(
+                              controller: _model.textFieldNumMesaController,
+                              focusNode: _model.textFieldNumMesaFocusNode,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                '_model.textFieldNumMesaController',
+                                const Duration(milliseconds: 2000),
+                                () => setState(() {}),
+                              ),
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelStyle:
+                                    FlutterFlowTheme.of(context).labelMedium,
+                                hintText: 'Digite um número para a nova mesa',
+                                hintStyle:
+                                    FlutterFlowTheme.of(context).labelMedium,
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                suffixIcon: _model.textFieldNumMesaController!
+                                        .text.isNotEmpty
+                                    ? InkWell(
+                                        onTap: () async {
+                                          _model.textFieldNumMesaController
+                                              ?.clear();
+                                          setState(() {});
+                                        },
+                                        child: const Icon(
+                                          Icons.clear,
+                                          size: 20.0,
+                                        ),
+                                      )
+                                    : null,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 16.0,
+                                  ),
+                              keyboardType: TextInputType.number,
+                              validator: _model
+                                  .textFieldNumMesaControllerValidator
+                                  .asValidator(context),
                             ),
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).labelMedium,
-                              hintText: 'Digite um número para a nova mesa',
-                              hintStyle:
-                                  FlutterFlowTheme.of(context).labelMedium,
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              suffixIcon: _model.textFieldNumMesaController!
-                                      .text.isNotEmpty
-                                  ? InkWell(
-                                      onTap: () async {
-                                        _model.textFieldNumMesaController
-                                            ?.clear();
-                                        setState(() {});
-                                      },
-                                      child: const Icon(
-                                        Icons.clear,
-                                        size: 20.0,
-                                      ),
-                                    )
-                                  : null,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 16.0,
-                                ),
-                            keyboardType: TextInputType.number,
-                            validator: _model
-                                .textFieldNumMesaControllerValidator
-                                .asValidator(context),
                           ),
                         ),
                         Padding(
@@ -186,6 +192,10 @@ class _CadMesasWidgetState extends State<CadMesasWidget> {
                               0.0, 10.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
                               var confirmDialogResponse =
                                   await showDialog<bool>(
                                         context: context,
@@ -236,6 +246,9 @@ class _CadMesasWidgetState extends State<CadMesasWidget> {
                                       FlutterFlowTheme.of(context).secondary,
                                 ),
                               );
+                              setState(() {
+                                _model.textFieldNumMesaController?.clear();
+                              });
                             },
                             text: 'ADICIONAR',
                             options: FFButtonOptions(
@@ -266,7 +279,7 @@ class _CadMesasWidgetState extends State<CadMesasWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: Text(
                     'MESAS CADASTRADAS',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -301,13 +314,20 @@ class _CadMesasWidgetState extends State<CadMesasWidget> {
                           (columnIndex) {
                         final columnMesaRecord =
                             columnMesaRecordList[columnIndex];
-                        return Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          elevation: 4.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
+                        return Container(
+                          width: double.infinity,
+                          height: 60.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Color(0x33000000),
+                                offset: Offset(3.0, 5.0),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -328,110 +348,120 @@ class _CadMesasWidgetState extends State<CadMesasWidget> {
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ),
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 5.0, 0.0),
-                                    child: FlutterFlowIconButton(
-                                      borderRadius: 20.0,
-                                      borderWidth: 1.0,
-                                      buttonSize: 40.0,
-                                      icon: FaIcon(
-                                        FontAwesomeIcons.solidEdit,
-                                        color: FlutterFlowTheme.of(context)
-                                            .success,
-                                        size: 24.0,
-                                      ),
-                                      onPressed: () {
-                                        print('IconButton pressed ...');
-                                      },
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 5.0, 0.0),
-                                    child: FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 20.0,
-                                      borderWidth: 1.0,
-                                      buttonSize: 40.0,
-                                      icon: FaIcon(
-                                        FontAwesomeIcons.trash,
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        size: 24.0,
-                                      ),
-                                      onPressed: () async {
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title:
-                                                          const Text('EXCLUIR MESA'),
-                                                      content: const Text(
-                                                          'Deseja excluir essa mesa?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: const Text('Não'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child: const Text('Sim'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
-                                        if (confirmDialogResponse) {
-                                          await columnMesaRecord.reference
-                                              .delete();
-                                        } else {
-                                          return;
-                                        }
-
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Mesa excluída com sucesso',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                              ),
-                                            ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
+                              if (valueOrDefault(currentUserDocument?.perfil, 0)
+                                      .toString() ==
+                                  '1')
+                                AuthUserStreamWidget(
+                                  builder: (context) => Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 5.0, 0.0),
+                                        child: FlutterFlowIconButton(
+                                          borderColor: Colors.transparent,
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.solidEdit,
+                                            color: FlutterFlowTheme.of(context)
+                                                .success,
+                                            size: 24.0,
                                           ),
-                                        );
-                                      },
-                                    ),
+                                          onPressed: () {
+                                            print('IconButton pressed ...');
+                                          },
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 5.0, 0.0),
+                                        child: FlutterFlowIconButton(
+                                          borderColor: Colors.transparent,
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.trash,
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
+                                            var confirmDialogResponse =
+                                                await showDialog<bool>(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: const Text(
+                                                              'EXCLUIR MESA'),
+                                                          content: const Text(
+                                                              'Deseja excluir essa mesa?'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      false),
+                                                              child:
+                                                                  const Text('Não'),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      true),
+                                                              child:
+                                                                  const Text('Sim'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    ) ??
+                                                    false;
+                                            if (confirmDialogResponse) {
+                                              await columnMesaRecord.reference
+                                                  .delete();
+                                            } else {
+                                              return;
+                                            }
+
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Mesa excluída com sucesso',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBackground,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
                             ],
                           ),
                         );
-                      }).divide(const SizedBox(height: 5.0)),
+                      }).divide(const SizedBox(height: 10.0)),
                     );
                   },
                 ),
-              ],
+              ]
+                  .addToStart(const SizedBox(height: 25.0))
+                  .addToEnd(const SizedBox(height: 50.0)),
             ),
           ),
         ),

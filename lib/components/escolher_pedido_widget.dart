@@ -53,23 +53,32 @@ class _EscolherPedidoWidgetState extends State<EscolherPedidoWidget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 25.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-              child: Text(
-                'TIPO DE PEDIDO',
-                style: FlutterFlowTheme.of(context).headlineSmall,
+            Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                child: Text(
+                  'TIPO DE PEDIDO',
+                  style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        fontFamily: 'Outfit',
+                        color: FlutterFlowTheme.of(context).primary,
+                      ),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 8.0),
-              child: Text(
-                'Escolha uma ação abaixo',
-                style: FlutterFlowTheme.of(context).labelMedium,
+            Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 8.0),
+                child: Text(
+                  'Escolha uma ação abaixo',
+                  style: FlutterFlowTheme.of(context).labelMedium,
+                ),
               ),
             ),
             InkWell(

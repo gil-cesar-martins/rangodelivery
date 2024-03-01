@@ -75,4 +75,16 @@ class FFAppState extends ChangeNotifier {
   set pedMesaCompleta(DocumentReference? value) {
     _pedMesaCompleta = value;
   }
+
+  int _qtdCarrinho = 0;
+  int get qtdCarrinho => _qtdCarrinho;
+  set qtdCarrinho(int value) {
+    _qtdCarrinho = value;
+  }
+
+  String _formaPG = 'DI';
+  String get formaPG => _formaPG;
+  set formaPG(String value) {
+    _formaPG = value;
+  }
 }

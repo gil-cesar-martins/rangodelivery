@@ -191,7 +191,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.asset(
                               'assets/images/logomarca.png',
-                              width: 159.0,
+                              width: 143.0,
                               height: 110.0,
                               fit: BoxFit.fitHeight,
                             ),

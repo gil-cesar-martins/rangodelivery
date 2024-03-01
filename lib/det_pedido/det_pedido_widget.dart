@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/components/forma_p_g_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -266,8 +267,84 @@ class _DetPedidoWidgetState extends State<DetPedidoWidget> {
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 10.0, 10.0, 10.0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        var confirmDialogResponse =
+                                            await showDialog<bool>(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title:
+                                                          const Text('FECHAR PEDIDO'),
+                                                      content: const Text(
+                                                          'Deseja fechar o pedido ?'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  false),
+                                                          child: const Text('Não'),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  true),
+                                                          child: const Text('Sim'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                ) ??
+                                                false;
+                                        if (confirmDialogResponse) {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: SizedBox(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.5,
+                                                    child: const FormaPGWidget(),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+
+                                          await columnPedidoRecord.reference
+                                              .update(createPedidoRecordData(
+                                            status: 1,
+                                            formaPG: FFAppState().formaPG,
+                                          ));
+
+                                          await widget.paramMesaCompleta!
+                                              .update(createMesaRecordData(
+                                            status: true,
+                                            idAtendente: '',
+                                          ));
+
+                                          context.pushNamed('mesas');
+                                        } else {
+                                          return;
+                                        }
                                       },
                                       text: 'FECHAR PEDIDO',
                                       options: FFButtonOptions(

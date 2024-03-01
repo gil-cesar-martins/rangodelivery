@@ -197,17 +197,23 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
-                                          Text(
-                                            formatNumber(
-                                              listViewPedidoItensRecord
-                                                  .subTotal,
-                                              formatType: FormatType.decimal,
-                                              decimalType:
-                                                  DecimalType.commaDecimal,
-                                              currency: 'R\$ ',
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 0.0),
+                                            child: Text(
+                                              formatNumber(
+                                                listViewPedidoItensRecord
+                                                    .subTotal,
+                                                formatType: FormatType.decimal,
+                                                decimalType:
+                                                    DecimalType.commaDecimal,
+                                                currency: 'R\$ ',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
                                           ),
                                         ],
                                       ),
@@ -219,7 +225,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 0.0, 0.0),
+                                          5.0, 0.0, 5.0, 0.0),
                                       child: FlutterFlowIconButton(
                                         borderColor: Colors.transparent,
                                         borderRadius: 20.0,
@@ -239,6 +245,8 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                 FFAppState().total -
                                                     listViewPedidoItensRecord
                                                         .subTotal;
+                                            FFAppState().qtdCarrinho =
+                                                FFAppState().qtdCarrinho + -1;
                                           });
                                           await listViewPedidoItensRecord
                                               .reference
@@ -298,18 +306,49 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          await widget.paramPedRefCompleta!
-                              .update(createPedidoRecordData(
-                            total: FFAppState().total,
-                            status: 3,
-                          ));
+                          var confirmDialogResponse = await showDialog<bool>(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: const Text('FINALIZAR'),
+                                    content: const Text(
+                                        'Finalizar pedido e enviar para cozinha?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, false),
+                                        child: const Text('Não'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, true),
+                                        child: const Text('Sim'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ) ??
+                              false;
+                          if (confirmDialogResponse) {
+                            await widget.paramPedRefCompleta!
+                                .update(createPedidoRecordData(
+                              total: FFAppState().total,
+                              status: 3,
+                            ));
+                          } else {
+                            return;
+                          }
+
                           setState(() {
                             FFAppState().total = 0.0;
+                            FFAppState().qtdCarrinho = 0;
                           });
+
+                          context.pushNamed('homePage');
                         },
                         text: 'FINALIZAR',
                         options: FFButtonOptions(
-                          width: 180.0,
+                          width: 169.0,
                           height: 43.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),

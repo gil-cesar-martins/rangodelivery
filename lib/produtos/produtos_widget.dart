@@ -90,36 +90,39 @@ class _ProdutosWidgetState extends State<ProdutosWidget> {
             ],
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 25.0, 0.0),
-              child: FlutterFlowIconButton(
-                borderRadius: 20.0,
-                borderWidth: 1.0,
-                buttonSize: 40.0,
-                icon: FaIcon(
-                  FontAwesomeIcons.cartPlus,
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                  size: 24.0,
+            Visibility(
+              visible: FFAppState().qtdCarrinho > 0,
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 25.0, 0.0),
+                child: FlutterFlowIconButton(
+                  borderRadius: 20.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  icon: FaIcon(
+                    FontAwesomeIcons.cartPlus,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    size: 24.0,
+                  ),
+                  onPressed: () async {
+                    context.pushNamed(
+                      'carrinho',
+                      queryParameters: {
+                        'paramIDPedido': serializeParam(
+                          widget.paramIDPedido,
+                          ParamType.String,
+                        ),
+                        'paramPedRefCompleta': serializeParam(
+                          widget.paramPedRefCompleta,
+                          ParamType.DocumentReference,
+                        ),
+                        'paramMesaFinal': serializeParam(
+                          widget.paramMesa2,
+                          ParamType.DocumentReference,
+                        ),
+                      }.withoutNulls,
+                    );
+                  },
                 ),
-                onPressed: () async {
-                  context.pushNamed(
-                    'carrinho',
-                    queryParameters: {
-                      'paramIDPedido': serializeParam(
-                        widget.paramIDPedido,
-                        ParamType.String,
-                      ),
-                      'paramPedRefCompleta': serializeParam(
-                        widget.paramPedRefCompleta,
-                        ParamType.DocumentReference,
-                      ),
-                      'paramMesaFinal': serializeParam(
-                        widget.paramMesa2,
-                        ParamType.DocumentReference,
-                      ),
-                    }.withoutNulls,
-                  );
-                },
               ),
             ),
           ],
@@ -249,6 +252,8 @@ class _ProdutosWidgetState extends State<ProdutosWidget> {
                                     listViewProdutoRecord.preco *
                                         FFAppState().quantidade;
                                 FFAppState().quantidade = 1;
+                                FFAppState().qtdCarrinho =
+                                    FFAppState().qtdCarrinho + 1;
                               });
                             },
                           ),
