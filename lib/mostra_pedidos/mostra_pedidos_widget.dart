@@ -136,7 +136,7 @@ class _MostraPedidosWidgetState extends State<MostraPedidosWidget> {
                                   children: [
                                     Text(
                                       dateTimeFormat(
-                                          'd/M H:mm', columnPedidoRecord.data!),
+                                          'd/M/y', columnPedidoRecord.data!),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),
@@ -167,50 +167,40 @@ class _MostraPedidosWidgetState extends State<MostraPedidosWidget> {
                               ),
                             ),
                             if (columnPedidoRecord.status > 1)
-                              FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                icon: FaIcon(
-                                  FontAwesomeIcons.cartPlus,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 24.0,
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 5.0, 0.0),
+                                child: FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.cartPlus,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed(
+                                      'produtos',
+                                      queryParameters: {
+                                        'paramIDPedido': serializeParam(
+                                          columnPedidoRecord.reference.id,
+                                          ParamType.String,
+                                        ),
+                                        'paramPedRefCompleta': serializeParam(
+                                          columnPedidoRecord.reference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                        'paramMesa2': serializeParam(
+                                          widget.paramMesaCompleta,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
                                 ),
-                                onPressed: () async {
-                                  context.pushNamed(
-                                    'produtos',
-                                    queryParameters: {
-                                      'paramIDPedido': serializeParam(
-                                        columnPedidoRecord.reference.id,
-                                        ParamType.String,
-                                      ),
-                                      'paramPedRefCompleta': serializeParam(
-                                        columnPedidoRecord.reference,
-                                        ParamType.DocumentReference,
-                                      ),
-                                      'paramMesa2': serializeParam(
-                                        widget.paramMesaCompleta,
-                                        ParamType.DocumentReference,
-                                      ),
-                                    }.withoutNulls,
-                                  );
-                                },
                               ),
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              icon: Icon(
-                                Icons.arrow_forward_ios,
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 24.0,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
                           ],
                         ),
                       ),

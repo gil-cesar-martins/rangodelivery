@@ -112,14 +112,14 @@ class _EscolherPedidoWidgetState extends State<EscolherPedidoWidget> {
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         elevation: 0.0,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
+                          borderRadius: BorderRadius.circular(14.0),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: FaIcon(
                             FontAwesomeIcons.folderOpen,
                             color: FlutterFlowTheme.of(context).primary,
-                            size: 20.0,
+                            size: 24.0,
                           ),
                         ),
                       ),
@@ -129,11 +129,18 @@ class _EscolherPedidoWidgetState extends State<EscolherPedidoWidget> {
                               12.0, 0.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
                                 'Pedidos abertos',
-                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 20.0,
+                                    ),
                               ),
                             ],
                           ),

@@ -254,7 +254,7 @@ class _DetPedidoWidgetState extends State<DetPedidoWidget> {
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       dateTimeFormat(
-                                          'd/M H:mm', columnPedidoRecord.data!),
+                                          'd/M/y', columnPedidoRecord.data!),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -330,10 +330,18 @@ class _DetPedidoWidgetState extends State<DetPedidoWidget> {
                                               (value) => safeSetState(() {}));
 
                                           await columnPedidoRecord.reference
-                                              .update(createPedidoRecordData(
-                                            status: 1,
-                                            formaPG: FFAppState().formaPG,
-                                          ));
+                                              .update({
+                                            ...createPedidoRecordData(
+                                              status: 1,
+                                              formaPG: FFAppState().formaPG,
+                                            ),
+                                            ...mapToFirestore(
+                                              {
+                                                'data': FieldValue
+                                                    .serverTimestamp(),
+                                              },
+                                            ),
+                                          });
 
                                           await widget.paramMesaCompleta!
                                               .update(createMesaRecordData(

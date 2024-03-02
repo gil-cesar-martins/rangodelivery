@@ -95,9 +95,14 @@ class _GetQuantidadeWidgetState extends State<GetQuantidadeWidget> {
                       size: 40.0,
                     ),
                     onPressed: () async {
-                      setState(() {
-                        FFAppState().quantidade = FFAppState().quantidade + -1;
-                      });
+                      if (FFAppState().quantidade > 1) {
+                        setState(() {
+                          FFAppState().quantidade =
+                              FFAppState().quantidade + -1;
+                        });
+                      } else {
+                        return;
+                      }
                     },
                   ),
                   Text(

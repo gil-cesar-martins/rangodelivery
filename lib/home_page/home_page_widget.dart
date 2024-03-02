@@ -433,8 +433,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     color: FlutterFlowTheme.of(context).primary,
                                     size: 36.0,
                                   ),
-                                  onPressed: () {
-                                    print('IconButton pressed ...');
+                                  onPressed: () async {
+                                    context.pushNamed('listaProdutos');
                                   },
                                 ),
                               ),
@@ -543,8 +543,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     color: FlutterFlowTheme.of(context).primary,
                                     size: 36.0,
                                   ),
-                                  onPressed: () {
-                                    print('IconButton pressed ...');
+                                  onPressed: () async {
+                                    context.pushNamed('fluxoCaixa');
                                   },
                                 ),
                               ),

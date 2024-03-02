@@ -139,6 +139,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ParamType.DocumentReference, false, ['mesa']),
             paramMesaNumero: params.getParam('paramMesaNumero', ParamType.int),
           ),
+        ),
+        FFRoute(
+          name: 'listaProdutos',
+          path: '/listaProdutos',
+          builder: (context, params) => const ListaProdutosWidget(),
+        ),
+        FFRoute(
+          name: 'produtoEditar',
+          path: '/produtoEditar',
+          builder: (context, params) => ProdutoEditarWidget(
+            paramProdutoCompleto: params.getParam('paramProdutoCompleto',
+                ParamType.DocumentReference, false, ['produto']),
+            paramNome: params.getParam('paramNome', ParamType.String),
+            paramCategoria: params.getParam('paramCategoria', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'fluxoCaixa',
+          path: '/fluxoCaixa',
+          builder: (context, params) => const FluxoCaixaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

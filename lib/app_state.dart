@@ -82,9 +82,15 @@ class FFAppState extends ChangeNotifier {
     _qtdCarrinho = value;
   }
 
-  String _formaPG = 'DI';
+  String _formaPG = 'Dinheiro';
   String get formaPG => _formaPG;
   set formaPG(String value) {
     _formaPG = value;
+  }
+
+  DateTime? _dataPagamento;
+  DateTime? get dataPagamento => _dataPagamento;
+  set dataPagamento(DateTime? value) {
+    _dataPagamento = value;
   }
 }
