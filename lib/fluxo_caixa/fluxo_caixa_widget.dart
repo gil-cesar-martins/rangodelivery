@@ -95,9 +95,7 @@ class _FluxoCaixaWidgetState extends State<FluxoCaixaWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.dropDownValueController ??=
-                        FormFieldController<String>(
-                      _model.dropDownValue ??= 'Dinheiro',
-                    ),
+                        FormFieldController<String>(null),
                     options: const [
                       'Dinheiro',
                       'C.Credito',
@@ -254,21 +252,6 @@ class _FluxoCaixaWidgetState extends State<FluxoCaixaWidget> {
                         },
                       );
                     },
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 66.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 4.0,
-                        color: Color(0x33000000),
-                        offset: Offset(2.0, 5.0),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ],

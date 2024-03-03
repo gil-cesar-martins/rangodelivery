@@ -66,19 +66,13 @@ class _ListaProdutosWidgetState extends State<ListaProdutosWidget> {
               context.pop();
             },
           ),
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                FFAppState().titulo,
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
-                      color: Colors.white,
-                      fontSize: 22.0,
-                    ),
-              ),
-            ],
+          title: Text(
+            FFAppState().titulo,
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                ),
           ),
           actions: const [],
           centerTitle: true,
